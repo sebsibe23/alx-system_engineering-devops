@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+# Description: This script displays "Best School" 10 times, "bad luck" on the 4th iteration, and "good luck" on the 8th iteration.
+
+y=1
+while (( y<=10 ))  # y is the loop variable, ranging from 1 to 10
+do
+    if (( y==4 ))  # If y is 4, print "bad luck"
+    then
+        echo "bad luck"
+    elif (( y==8 ))  # If y is 8, print "good luck"
+    then
+        echo "good luck"
+    else  # For other iterations, print "Best School"
+        echo "Best School"
+    fi
+    ((y++))  # Increment the loop variable
+done
