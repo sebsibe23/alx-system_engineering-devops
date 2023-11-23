@@ -1,8 +1,15 @@
-#!/bin/bash
-# Description: This script reads the /etc/passwd file and formats the output.
+#!/usr/bin/env bash
+# This script displays a story with each line of /etc/passwd.
 
-while IFS=: read -r username password user_id group_id user_id_info home_directory command_shell
+# Define the input file
+input="/etc/passwd"
+
+# Read the input file line by line
+# IFS=: sets the field separator to :
+# read -r f1 f2 f3 f4 f5 f6 f7 reads each field into a separate variable
+while IFS=: read -r f1 f2 f3 f4 f5 f6 f7
 do
     # Print the formatted output
-    echo "The user $username is part of the $group_id gang, lives in $home_directory and rides $command_shell. USER ID's place is protected by the passcode $password, more info about the user here: $user_id_info"
-done < /etc/passwd
+    # $f1, $f2, etc. are the values of the fields read from the file
+    echo "The user $f1 is part of the $f4 gang, lives in $f6 and rides $f7. $f3's place is protected by the passcode $f2, more info about the user here: $f5"
+done < "$input"  # Redirect the input file into the while loop
