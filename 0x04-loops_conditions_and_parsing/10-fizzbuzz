@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+# Description: This script displays numbers from 1 to 100, replaces multiples of 3 with "Fizz", multiples of 5 with "Buzz", and multiples of both 3 and 5 with "FizzBuzz".
+
+for (( t=1; t<=100; t++ ))  # t is the loop variable, ranging from 1 to 100
+do
+    if (( t%3==0 && t%5==0 ))  # If t is a multiple of 3 and 5
+    then
+        echo "FizzBuzz"
+    elif (( t%3==0 ))  # If t is a multiple of 3
+    then
+        echo "Fizz"
+    elif (( t%5==0 ))  # If t is a multiple of 5
+    then
+        echo "Buzz"
+    else
+        echo "$t"  # Otherwise, print a number
+    fi
+done
