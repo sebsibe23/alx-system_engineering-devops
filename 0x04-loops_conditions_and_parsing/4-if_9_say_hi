@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+# Description: This script displays the string "Best School" 10 times, and "Hi" on the 9th iteration.
+
+c=1
+while (( c<=10 ))  # c is the loop variable, ranging from 1 to 10
+do
+    echo "Best School"  # Prints "Best School" to the console
+    if (( c==9 ))  # If c is 9, print "Hi"
+    then
+        echo "Hi"
+    fi
+    ((c++))  # Increment the loop variable
+done
