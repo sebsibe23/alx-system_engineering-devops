@@ -5,7 +5,7 @@
 # Description: This script displays the string "Best School" 10 times.
 # Return: None
 
-for (( f=1; f<=10; f++ ))  # f is the loop variable, ranging from 1 to 10
+for (( c=1; c<=10; c++ ))  # c is the loop variable, ranging from 1 to 10
 do
     echo "Best School"  # Prints "Best School" to the console
 done
