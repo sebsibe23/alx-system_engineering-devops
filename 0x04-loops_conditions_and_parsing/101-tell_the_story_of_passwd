@@ -1,5 +1,5 @@
 #!/bin/bash
-# Function: This script reads the /etc/passwd file and formats the output.
+# Description: This script reads the /etc/passwd file and formats the output.
 
 while IFS=: read -r username password user_id group_id user_id_info home_directory command_shell
 do
