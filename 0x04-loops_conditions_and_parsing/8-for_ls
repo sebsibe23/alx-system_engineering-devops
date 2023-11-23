@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# Description: This script displays the part of the filenames in the current directory after the first dash.
+
+for f in *
+do
+    echo "$f" | cut -d'-' -f2  # Prints the part of the filename after the first dash
+done
