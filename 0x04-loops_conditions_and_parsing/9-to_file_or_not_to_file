@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+# Description: This script checks if the file "school" exists, and if it does, whether it's empty or a regular file.
+
+varfile="school"
+if [[ -e $varfile ]]  # Check if the file exists
+then
+    echo "school file exists"
+    if [[ -s $varfile ]]  # Check if the file is not empty
+    then
+        echo "school file is not empty"
+    else
+        echo "school file is empty"
+    fi
+    if [[ -f $varfile ]]  # Check if the file is a regular file
+    then
+        echo "school is a regular file"
+    fi
+else
+    echo "school file does not exist"
+fi
