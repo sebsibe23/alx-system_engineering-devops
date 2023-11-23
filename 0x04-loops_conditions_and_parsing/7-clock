@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# Description: This script displays the time for 12 hours and 59 minutes.
+
+Varhour=0
+while (( Varhour<=12 ))  # Varhour is the loop variable, ranging from 0 to 12
+do
+    echo "Hour: $Varhour"
+    minute=1
+    while (( minute<=59 ))  # minute is the loop variable, ranging from 1 to 59
+    do
+        echo "$minute"
+        ((minute++))  # Increment the minute variable
+    done
+    ((Varhour++))  # Increment the Varhour variable
+done
