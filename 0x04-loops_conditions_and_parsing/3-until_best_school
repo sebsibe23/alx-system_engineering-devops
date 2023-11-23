@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# Description: This script displays the string "Best School" 10 times.
+
+x=1
+until (( x>10 ))  # x is the loop variable, ranging from 1 to 10
+do
+    echo "Best School"  # Prints "Best School" to the console
+    ((x++))  # Increment the loop variable
+done
