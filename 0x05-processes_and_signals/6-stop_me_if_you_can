@@ -1,9 +1,18 @@
-#!/usr/bin/env bash
-
-# Function Name: KillInfinityMessage
+#!/bin/bash
+# Function Name: Main
 # Parameters: None
-# Description: This script stops the 4-to_infinity_and_beyond process using the SIGTERM signal.
-# Return: None. The script sends a termination signal to the 4-to_infinity_and_beyond process.
+# Description: This script checks if the process
+#'4-to_infinity_and_beyond' is running and terminates it if it is.
+# Return: None
 
-# Terminate the infinite process
-pkill -15 "bash ./4-to_infinity_and_beyond" -f
+# Get the PID of the process
+pid=$(pgrep -f 4-to_infinity_and_beyond)
+
+# Check if the process is running
+if [[ -n $pid ]]; then
+    # Send a SIGTERM signal to the process
+    pkill -f 4-to_infinity_and_beyond
+    echo "Process 4-to_infinity_and_beyond has been terminated."
+else
+    echo "Process 4-to_infinity_and_beyond is not running."
+fi
