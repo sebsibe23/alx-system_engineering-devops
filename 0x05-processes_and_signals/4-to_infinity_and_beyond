@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# Function Name: DisplayInfinityMessage
+# Parameters: None
+# Description: This script displays the message
+#"To infinity and beyond" indefinitely with a 2-second
+#pause between each iteration.
+# Return: None. The script runs indefinitely until
+#manually stopped.
+
+while true
+do
+  echo "To infinity and beyond"
+  sleep 2
+done
