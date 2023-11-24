@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# Description: This script stops the
+#7-highlander process using the SIGKILL signal.
+# Return: None. The script sends a kill signal
+#to the 7-highlander process.
+
+# Terminate the infinite process
+pkill -9 "bash ./7-highlander" -f

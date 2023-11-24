@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# Description: This script displays the message
+#"To infinity and beyond" indefinitely with
+#a 2-second pause between each iteration.
+#It also handles the SIGTERM signal by printing a message.
+# Return: None. The script runs indefinitely until manually stopped.
+
+
+trap "echo 'I am invincible!!!'" 15
+
+# print the message forever
+while true;
+do
+	echo "To infinity and beyond";
+	sleep 2
+done

@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+# Description: This script creates a file with its PID,
+#displays a message indefinitely, and handles SIGINT,
+#SIGTERM, and SIGQUIT signals. It also removes the
+#PID file and terminates itself when it receives
+#a SIGTERM or SIGQUIT signal.
+# Return: None. The script runs indefinitely until
+#manually stopped or it receives a SIGTERM or SIGQUIT signal.
+
+echo "$$" > /var/run/myscript.pid
+
+termfunc() {
+	rm /var/run/myscript.pid
+	exit
+}
+
+while true
+do
+	echo "To infinity and beyond"
+	sleep 2
+	trap 'echo "Y U no love me?!"' SIGINT
+	trap 'echo "I hate the kill command" && termfunc' SIGTERM
+	trap 'termfunc' SIGQUIT
+done
