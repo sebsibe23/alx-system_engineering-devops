@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# Parameters: None
+# Description: This script displays a list of all currently running processes that contain the word "bash" in a user-oriented format. It also shows the process hierarchy.
+# Return: Outputs a list of all currently running processes that contain the word "bash". If the script fails, it returns a non-zero status code.
+
+ps auxf | grep bash
