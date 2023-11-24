@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
-# Function Name: DisplayBashProcessIDs
-# Parameters: None
-# Description: This script displays the PID and process name of all currently running processes that contain the word "bash".
-# Return: Outputs a list of PIDs and process names for all currently running processes that contain the word "bash". If the script fails, it returns a non-zero status code.
+# Description: This script displays the PID and process name of
+#all currently running processes that contain the word "bash".
+# Return: Outputs a list of PIDs and process names for all
+#currently running processes that contain the word "bash".
+#If the script fails, it returns a non-zero status code.
 
 pgrep -l bash
