@@ -2,7 +2,7 @@
 # Function Name: WriteAliveMessage
 # Parameters: None
 # Description: This script creates a file and writes "I am alive!"
-#to it indefinitely with a 2-second pause between each iteration.
+# to it indefinitely with a 2-second pause between each iteration.
 # Return: None. The script runs indefinitely until manually stopped.
 
 NAME=/tmp/my_process

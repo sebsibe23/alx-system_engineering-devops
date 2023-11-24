@@ -8,7 +8,6 @@
 #action on the manage_my_process program.
 
 FILE="/var/run/my_process.pid"
-
 create()
 {
     sudo touch $FILE
