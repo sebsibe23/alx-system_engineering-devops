@@ -1,15 +1,9 @@
-#!/bin/bash
-# Function Name: Main
-# Parameters: None
-# Description: This script checks if the process
-#'4-to_infinity_and_beyond' is running and terminates it if it is.
-# Return: None
+#!/usr/bin/env bash
+# Script Name: Terminate Infinity and Beyond
+# Description: This script kills the
+#'4-to_infinity_and_beyond' program using the SIGTERM signal.
 
-# Get the PID of the process
-pid=$(pgrep -f 4-to_infinity_and_beyond)
-
-# Check if the process is running
-if [[ -n $pid ]]; then
-    # Send a SIGTERM signal to the process
-    pkill -f 4-to_infinity_and_beyond
-fi
+# Terminate the infinite process
+# The -15 option sends the SIGTERM signal to the process.
+# The -f option matches against the entire command line.
+pkill -15 "bash ./4-to_infinity_and_beyond" -f
