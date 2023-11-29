@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# This script uses the netstat command to display
+# all listening sockets along with the 
+# programs that opened them.
+# Parameters: None
+# Return: Outputs a list of all listening sockets
+# and the programs that opened them.
+
+netstat --listening --program

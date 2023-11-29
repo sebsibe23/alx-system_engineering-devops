@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+#This script pings an IP address
+# passed as an argument.
+# Parameters: IP_ADDRESS - The IP address to ping.
+# Return: Pings the IP address 5 times
+# and displays the result.
+
+# Check if an argument was passed
+if [ "$#" -ne 1 ]; then
+    echo "Usage: 5-is_the_host_on_the_network {IP_ADDRESS}"
+    exit 1
+fi
+
+# Ping the IP address 5 times
+ping -c 5 $1
