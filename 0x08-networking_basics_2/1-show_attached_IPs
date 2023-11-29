@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# displays all active IPv4 IPs on A
+# machine it’s executed on.
+
+# The 'ifconfig' command is used to display
+# network interface configuration.
+# The 'awk' command is used to parse the
+# output from 'ifconfig'.
+# The '-F "[: ]+"' option sets the field
+# separator to a space or a colon.
+# The '/inet addr:/' pattern matches 
+# lines that contain 'inet addr:'.
+# The '{ print $4 }' action prints the fourth field on
+# each matching line, which is the IP address.
+ifconfig | awk -F "[: ]+" '/inet addr:/ { print $4 }'

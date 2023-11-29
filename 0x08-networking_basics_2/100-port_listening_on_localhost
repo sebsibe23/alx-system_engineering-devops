@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# the script listens to the port 98 on localhost.
+
+# The 'nc' command is short for netcat,
+# a simple Unix utility that reads and writes 
+# data across network connections, using the TCP or UDP protocol.
+# The '-l' option is used to specify that netcat should
+# listen for incoming connections rather
+# than initiating connections.
+# '98' is the port number that netcat will listen to.
+nc -l 98
