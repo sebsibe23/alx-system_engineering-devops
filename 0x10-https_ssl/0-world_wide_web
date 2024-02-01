@@ -1,33 +1,27 @@
 #!/usr/bin/env bash
-# This script displays information about subdomains
+# The script displays information about subdomains
 
-# Function to display info about a subdomain
-display_info() {
-    local domain="$1"
-    local subdomain="$2"
-    local record_info
-    record_info=$(dig "$subdomain"."$domain" +short -t A)
-
-    if [[ -n "$record_info" ]]; then
-        echo "The subdomain $subdomain is a A record and points to $record_info"
-    else
-        echo "The subdomain $subdomain does not have an A record"
-    fi
+# display subdomain information
+get_subdomain_info() {
+  domain="$1"
+  subdomain="$2"
+  dig_output=$(dig "$subdomain.$domain" | grep -A1 'ANSWER SECTION:')
+  record_type=$(echo "$dig_output" | awk '{print $4}')
+  destination=$(echo "$dig_output" | awk '{print $5}')
+  echo "The subdomain $subdomain is a $record_type record and points to $destination"
 }
 
 # Main script
 domain="$1"
 subdomain="$2"
 
-if [[ -n "$domain" ]]; then
-    if [[ -n "$subdomain" ]]; then
-        display_info "$domain" "$subdomain"
-    else
-        for subdomain in www lb-01 web-01 web-02; do
-            display_info "$domain" "$subdomain"
-        done
-    fi
+if [ -z "$subdomain" ]; then
+  # No specific subdomain provided, display information for default subdomains
+  get_subdomain_info "$domain" www
+  get_subdomain_info "$domain" lb-01
+  get_subdomain_info "$domain" web-01
+  get_subdomain_info "$domain" web-02
 else
-    echo "Usage: $0 domain [subdomain]"
-    exit 1
+  # Display information for the specified subdomain
+  get_subdomain_info "$domain" "$subdomain"
 fi
