@@ -1,19 +1,33 @@
 #!/usr/bin/env bash
-# Usage: ./1-world_wide_web <domain> <subdomain>
+# This script displays information about subdomains
 
-Domain="$1"
+# Function to display info about a subdomain
+display_info() {
+    local domain="$1"
+    local subdomain="$2"
+    local record_info
+    record_info=$(dig "$subdomain"."$domain" +short -t A)
+
+    if [[ -n "$record_info" ]]; then
+        echo "The subdomain $subdomain is a A record and points to $record_info"
+    else
+        echo "The subdomain $subdomain does not have an A record"
+    fi
+}
+
+# Main script
+domain="$1"
 subdomain="$2"
 
-if [ -z "$subdomain" ]; then
-  subdomains=("www" "lb-01" "web-01" "web-02")
+if [[ -n "$domain" ]]; then
+    if [[ -n "$subdomain" ]]; then
+        display_info "$domain" "$subdomain"
+    else
+        for subdomain in www lb-01 web-01 web-02; do
+            display_info "$domain" "$subdomain"
+        done
+    fi
 else
-  subdomains=("$subdomain")
+    echo "Usage: $0 domain [subdomain]"
+    exit 1
 fi
-
-for sub in "${subdomains[@]}"
-do
-  result=$(dig "$sub.$domain" | awk '/^'${sub}'\.'${domain}'\./{print}')
-  record_type=$(echo "$result" | awk '{print $4}')
-  destination=$(echo "$result" | awk '{print $5}')
-  echo "The subdomain $sub is a $record_type record and points to $destination"
-done
