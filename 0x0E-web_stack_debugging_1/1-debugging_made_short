@@ -1,11 +1,5 @@
 #!/usr/bin/env bash
-# Change the default port from 8080
-#to 80 in the NGINX configuration file
+#Change a default port from 8080 to 80
 sed -i "s/8080/80/g" /etc/nginx/sites-enabled/default
-# Restart the NGINX service to 
-#apply the configuration changes
 service nginx restart
-# Kill the NGINX process using
-#the process ID (PID) obtained
-#from the "/run/nginx.pid" file
 kill -9 "$(cat /run/nginx.pid)"
