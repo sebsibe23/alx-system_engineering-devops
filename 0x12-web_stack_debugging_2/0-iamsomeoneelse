@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# Runs the whoami command under the user passed as argument.
+#It takes a single argument (the username) when invoked.
+#The sudo -u "$1" command runs the subsequent command
+#(whoami) as the specified user.
+#The script begins with the shebang (#!/usr/bin/env bash),
+#which specifies that the script should be interpreted using the Bash shell.
+#Finally, the whoami command prints the username of the current user.
+sudo -u "$1" whoami
