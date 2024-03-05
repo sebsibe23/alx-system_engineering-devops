@@ -1,33 +1,29 @@
 #!/usr/bin/python3
-import requests
+"""Module for task 0"""
 
 
 def number_of_subscribers(subreddit):
-    """Queries the Reddit API for the number of subscribers for
+    """Queries the Reddit API and returns the number
+    of subscribers
+    to the subreddit
+    Retrieves the number of subscribers for
     a given subreddit.
 
     Args:
-        subreddit (str): The name of the subreddit to query.
+        subreddit (str): The name of the subreddit.
 
     Returns:
-        int: The number of subscribers for the subreddit, or 0 if invalid.
+        int: The total number of subscribers for
+        the subreddit, or 0 if invalid.
+
     """
+    import requests
 
-    url = f"https://www.reddit.com/r/{subreddit}/about.json"
-    headers = {"User-Agent": "My Reddit API Client"}  # Custom User-Agent
-
-    try:
-        response = requests.get(url, headers=headers, allow_redirects=False)
-        response.raise_for_status()  # Raise an exception for non-200
-
-        data = response.json()
-        return data.get("data", {}).get("subscribers", 0)
-    except (requests.exceptions.RequestException, KeyError):
+    sub_info = requests.get("https://www.reddit.com/r/{}/about.json"
+                            .format(subreddit),
+                            headers={"User-Agent": "My-User-Agent"},
+                            allow_redirects=False)
+    if sub_info.status_code >= 300:
         return 0
 
-
-if __name__ == "__main__":
-    # For testing purposes only, remove this block in production
-    subreddit = "python"
-    subscribers = number_of_subscribers(subreddit)
-    print(f"The subreddit '{subreddit}' has {subscribers} subscribers.")
+    return sub_info.json().get("data").get("subscribers")
