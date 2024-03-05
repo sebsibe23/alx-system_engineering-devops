@@ -1,4 +1,6 @@
+#!/usr/bin/python3
 import requests
+
 
 def number_of_subscribers(subreddit):
     """Queries the Reddit API for the number of subscribers for
