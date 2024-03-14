@@ -18,7 +18,6 @@ StandardOutput=append:/tmp/airbnb-access.log
 StandardError=append:/tmp/airbnb-error.log
 # Identifier for the syslog messages.
 SyslogIdentifier=gunicorn
-Environment="PATH=/usr/bin"
 
 [Install]
 # Enable the service for multi-user.target.
