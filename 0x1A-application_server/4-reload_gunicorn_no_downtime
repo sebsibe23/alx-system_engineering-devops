@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+# Gracefully reloads Gunicorn.
+
+# It uses the pgrep command to find the process IDs (PIDs) of running Gunicorn processes and assigns the result to the gunicorn_pids variable.
+gunicorn_pids=$(pgrep gunicorn)
+
+if [ -z "$gunicorn_pids" ]; then
+    echo "No Gunicorn processes found."
+    exit 1
+fi
+
+# Inside the loop, it sends the HUP signal to each PID using the kill command. The HUP signal is used by Gunicorn to gracefully reload workers.
+echo "Stopping old workers gracefully..."
+for pid in $gunicorn_pids; do
+    kill -HUP "$pid"
+done
+
+# Wait for old workers to finish processing
+echo "Waiting for old workers to finish processing..."
+sleep 5
+
+echo "Graceful reload complete"
