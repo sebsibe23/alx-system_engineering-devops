@@ -1,21 +1,24 @@
-#!/usr/bin/env bash
+[Unit]
+Description=Gunicorn instance to serve AirBnB Clone
+# Start after a network is available.
+After=network.target
 
-# Get the process IDs of Gunicorn workers
-worker_pids=$(ps auxf | grep gunicorn | grep -v grep | awk '{print $2}')
+[Service]
+# Run a service under the 'ubuntu' user.
+User=ubuntu
+# Set working directory
+WorkingDirectory=/home/ubuntu/AirBnB_clone_v4
+# Start Gunicorn with 3 workers, binding to 0.0.0.0:5003.
+ExecStart=gunicorn --workers 3 --bind 0.0.0.0:5003 web_dynamic.2-hbnb:app
+# Restart a service if it fails.
+Restart=always
+# Redirect standard output to syslog.
+StandardOutput=append:/tmp/airbnb-access.log
+# Redirect standard error to syslog.
+StandardError=append:/tmp/airbnb-error.log
+# Identifier for syslog messages.
+SyslogIdentifier=gunicorn
 
-# Display the current Gunicorn processes
-echo "Current Gunicorn processes:"
-ps auxf | grep gunicorn | grep -v grep
-
-# Send a graceful reload signal to each worker
-for pid in $worker_pids; do
-    echo "Reloading Gunicorn worker with PID $pid"
-    kill -HUP $pid
-done
-
-# Wait for the workers to restart
-sleep 2
-
-# Display the updated Gunicorn processes
-echo "Updated Gunicorn processes:"
-ps auxf | grep gunicorn | grep -v grep
+[Install]
+# Enable a service for multi-user.target.
+WantedBy=multi-user.target
